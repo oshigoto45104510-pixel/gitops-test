@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: traefik
+    meta.helm.sh/release-namespace: traefik
+  creationTimestamp: "2025-09-24T09:16:29Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app.kubernetes.io/instance: traefik-traefik
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: traefik
+    helm.sh/chart: traefik-37.1.1
+  name: traefik
+  namespace: traefik
+  resourceVersion: "9392"
+  uid: 303d4cd3-e193-42d5-bd7e-da18f7fbe4ce
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.43.118.102
+  clusterIPs:
+  - 10.43.118.102
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: web
+    nodePort: 30402
+    port: 80
+    protocol: TCP
+    targetPort: web
+  - name: websecure
+    nodePort: 31297
+    port: 443
+    protocol: TCP
+    targetPort: websecure
+  - name: dashboard
+    nodePort: 30080  # ← 任意のNodePort（他と被らない番号）
+    port: 8080
+    protocol: TCP
+    targetPort: traefik  # 通常は traefik コンテナのポート名が "traefik"
+  selector:
+    app.kubernetes.io/instance: traefik-traefik
+    app.kubernetes.io/name: traefik
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.21.97
+      ipMode: VIP

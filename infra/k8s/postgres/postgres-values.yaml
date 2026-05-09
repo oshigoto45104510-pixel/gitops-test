@@ -1,0 +1,15 @@
+global:
+  postgresql:
+    auth:
+      postgresPassword: kana0421
+
+primary:
+  persistence:
+    enabled: true
+    size: 5Gi
+    storageClass: local-path
+  service:
+    type: NodePort
+    nodePorts:
+      postgresql: 31432
+

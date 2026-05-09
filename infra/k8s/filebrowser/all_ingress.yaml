@@ -1,0 +1,34 @@
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{},"name":"filebrowser-ingress","namespace":"filebrowser"},"spec":{"ingressClassName":"traefik","rules":[{"host":"no9-tengaisei-dysonsphere.duckdns.org","http":{"paths":[{"backend":{"service":{"name":"filebrowser","port":{"number":80}}},"path":"/filebrowser/","pathType":"Prefix"}]}}]}}
+    creationTimestamp: "2025-09-24T09:21:00Z"
+    generation: 2
+    name: filebrowser-ingress
+    namespace: filebrowser
+    resourceVersion: "9666"
+    uid: 27a8455b-7ca9-466a-9b88-db88ac2e6198
+  spec:
+    ingressClassName: traefik
+    rules:
+    - host: no9-tengaisei-dysonsphere.duckdns.org
+      http:
+        paths:
+        - backend:
+            service:
+              name: filebrowser
+              port:
+                number: 80
+          path: /filebrowser/
+          pathType: Prefix
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 192.168.21.97
+kind: List
+metadata:
+  resourceVersion: ""

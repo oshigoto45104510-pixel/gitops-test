@@ -1,0 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: filebrowser
+  namespace: filebrowser
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`no9-tengaisei-dysonsphere.duckdns.org`) && PathPrefix(`/filebrowser`)
+      kind: Rule
+      services:
+        - name: filebrowser
+          port: 80
+      middlewares:
+        - name: filebrowser-stripprefix
+
