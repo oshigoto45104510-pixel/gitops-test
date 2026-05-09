@@ -1,8 +1,4 @@
 resources:
 - ../../base
 
-patches:
-- target:
-    kind: PodDisruptionBudget
-    name: sample-app-pdb
-  path: patch/pdb-delete.yaml
+
