@@ -1,5 +1,8 @@
 resources:
 - ../../base
 
-patchesStrategicMerge:
-- patch/pdb-delete.yaml
+patches:
+- target:
+    kind: PodDisruptionBudget
+    name: sample-app-pdb
+  path: patch/pdb-delete.yaml
